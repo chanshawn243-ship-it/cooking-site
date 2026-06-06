@@ -1,0 +1,18 @@
+{
+  "name": "culinary-canvas",
+  "version": "1.0.0",
+  "description": "A premium, interactive website for learning culinary arts",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "deploy": "netlify deploy --prod --dir=."
+  },
+  "keywords": [
+    "cooking",
+    "recipes",
+    "culinary",
+    "interactive"
+  ],
+  "author": "Culinary Canvas",
+  "license": "MIT"
+}

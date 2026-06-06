@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Culinary Canvas - Master the Art of Cooking</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lora:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-stone-50">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-md border-b border-stone-200 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="text-2xl font-bold text-emerald-900" style="font-family: 'Playfair Display', serif;">Culinary Canvas</div>
+            <div class="hidden md:flex gap-8">
+                <a href="#home" class="text-stone-700 hover:text-emerald-900 transition font-medium">Home</a>
+                <a href="#recipes" class="text-stone-700 hover:text-emerald-900 transition font-medium">Recipes</a>
+                <a href="#cooking" class="text-stone-700 hover:text-emerald-900 transition font-medium">Cook Now</a>
+                <a href="#essentials" class="text-stone-700 hover:text-emerald-900 transition font-medium">Kitchen Essentials</a>
+            </div>
+            <button id="mobileMenuBtn" class="md:hidden text-emerald-900">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-32 pb-20 bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-950 text-white overflow-hidden relative">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-20 right-10 w-72 h-72 bg-orange-400 rounded-full mix-blend-multiply filter blur-3xl"></div>
+            <div class="absolute -bottom-8 left-20 w-72 h-72 bg-orange-300 rounded-full mix-blend-multiply filter blur-3xl"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 class="text-5xl md:text-7xl font-bold mb-6" style="font-family: 'Playfair Display', serif;">
+                        Master the <span class="text-orange-300">Art</span> of Cooking
+                    </h1>
+                    <p class="text-xl text-stone-100 mb-8 leading-relaxed" style="font-family: 'Lora', serif;">
+                        From the perfect French omelette to artisan sourdough, unlock culinary excellence with our comprehensive guides, interactive lessons, and professional techniques.
+                    </p>
+                    <div class="flex gap-4">
+                        <button onclick="document.getElementById('recipes').scrollIntoView({behavior: 'smooth'})" class="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-semibold transition transform hover:scale-105">
+                            Explore Recipes
+                        </button>
+                        <button onclick="document.getElementById('cooking').scrollIntoView({behavior: 'smooth'})" class="border-2 border-white hover:bg-white hover:text-emerald-900 text-white px-8 py-3 rounded-lg font-semibold transition">
+                            Start Cooking
+                        </button>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="bg-gradient-to-br from-orange-400 to-orange-500 rounded-lg h-96 flex items-center justify-center text-6xl shadow-2xl transform hover:scale-105 transition">
+                        🍳
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recipe Index -->
+    <section id="recipes" class="py-20 bg-stone-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold text-emerald-900 mb-4" style="font-family: 'Playfair Display', serif;">Recipe Index</h2>
+                <p class="text-xl text-stone-600" style="font-family: 'Lora', serif;">Discover our curated collection of culinary masterpieces</p>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="mb-12 max-w-2xl mx-auto">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="Search recipes..." 
+                    class="w-full px-6 py-4 rounded-lg border-2 border-emerald-200 focus:border-emerald-900 focus:outline-none text-lg"
+                    oninput="filterRecipes()"
+                >
+            </div>
+
+            <!-- Recipe Grid -->
+            <div id="recipeGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Recipes will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Cooking Mode -->
+    <section id="cooking" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-5xl font-bold text-emerald-900 mb-4" style="font-family: 'Playfair Display', serif;">Interactive Cooking Mode</h2>
+                <p class="text-xl text-stone-600" style="font-family: 'Lora', serif;">Step-by-step guidance for perfect results</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                <!-- Recipe Selector -->
+                <div>
+                    <h3 class="text-2xl font-bold text-emerald-900 mb-6" style="font-family: 'Playfair Display', serif;">Select a Recipe</h3>
+                    <div class="space-y-3">
+                        <button onclick="loadRecipeForCooking(0)" class="recipe-btn w-full p-4 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-900 font-semibold transition text-left border-2 border-emerald-200">
+                            🥖 The Perfect French Omelette
+                        </button>
+                        <button onclick="loadRecipeForCooking(1)" class="recipe-btn w-full p-4 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-900 font-semibold transition text-left border-2 border-emerald-200">
+                            🍞 Artisan Sourdough Bread
+                        </button>
+                        <button onclick="loadRecipeForCooking(2)" class="recipe-btn w-full p-4 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-900 font-semibold transition text-left border-2 border-emerald-200">
+                            🍝 Creamy Carbonara
+                        </button>
+                        <button onclick="loadRecipeForCooking(3)" class="recipe-btn w-full p-4 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-900 font-semibold transition text-left border-2 border-emerald-200">
+                            🥩 Pan-Seared Salmon
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Cooking Steps -->
+                <div>
+                    <h3 class="text-2xl font-bold text-emerald-900 mb-6" style="font-family: 'Playfair Display', serif;">Step-by-Step Guide</h3>
+                    <div id="stepsContainer" class="space-y-4">
+                        <!-- Steps will be populated here -->
+                    </div>
+                    <div class="mt-8">
+                        <div class="w-full bg-stone-200 rounded-full h-3">
+                            <div id="progressBar" class="bg-orange-500 h-3 rounded-full transition-all duration-300" style="width: 0%"></div>
+                        </div>
+                        <p id="progressText" class="text-sm text-stone-600 mt-2">0% Complete</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kitchen Essentials Hub -->
+    <section id="essentials" class="py-20 bg-gradient-to-br from-orange-50 to-amber-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-5xl font-bold text-emerald-900 mb-4" style="font-family: 'Playfair Display', serif;">Kitchen Essentials Hub</h2>
+                <p class="text-xl text-stone-600" style="font-family: 'Lora', serif;">Master the fundamentals of professional cooking</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Knife Skills -->
+                <div class="bg-white rounded-lg p-8 shadow-lg hover:shadow-xl transition border-t-4 border-emerald-900">
+                    <div class="text-4xl mb-4">🔪</div>
+                    <h3 class="text-2xl font-bold text-emerald-900 mb-4" style="font-family: 'Playfair Display', serif;">Knife Skills</h3>
+                    <div class="space-y-4 text-stone-700" style="font-family: 'Lora', serif;">
+                        <div>
+                            <h4 class="font-semibold text-emerald-900 mb-2">The Chef's Knife Grip</h4>
+                            <p class="text-sm">Hold the knife with your thumb and index finger pinching the blade base, while other fingers wrap around the handle. This gives maximum control and safety.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-emerald-900 mb-2">The Claw Hand Technique</h4>
+                            <p class="text-sm">Curl your fingertips inward when holding ingredients. Use your knuckles as a guide for the knife blade to prevent cuts.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-emerald-900 mb-2">Rocking Motion Cutting</h4>
+                            <p class="text-sm">For herbs and delicate items, use a rocking motion with the knife tip on the cutting board, moving the blade up and down smoothly.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Heat Control -->
+                <div class="bg-white rounded-lg p-8 shadow-lg hover:shadow-xl transition border-t-4 border-orange-500">
+                    <div class="text-4xl mb-4">🔥</div>
+                    <h3 class="text-2xl font-bold text-emerald-900 mb-4" style="font-family: 'Playfair Display', serif;">Heat Control Mastery</h3>
+                    <div class="space-y-4 text-stone-700" style="font-family: 'Lora', serif;">
+                        <div>
+                            <h4 class="font-semibold text-emerald-900 mb-2">High Heat: Searing & Sautéing</h4>
+                            <p class="text-sm">Used to create a flavorful crust on proteins and vegetables. Oil should shimmer before adding food. Perfect for achieving caramelization.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-emerald-900 mb-2">Medium Heat: The Sweet Spot</h4>
+                            <p class="text-sm">Ideal for most everyday cooking. Allows food to cook through evenly while developing flavor without burning.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-emerald-900 mb-2">Low Heat: Gentle Cooking</h4>
+                            <p class="text-sm">Perfect for delicate sauces, melting chocolate, and slow-cooking. Prevents overcooking and maintains ingredient integrity.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-emerald-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h4 class="text-xl font-bold mb-4" style="font-family: 'Playfair Display', serif;">Culinary Canvas</h4>
+                    <p class="text-stone-200">Master the art of cooking with our premium, interactive culinary guides.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-stone-200">
+                        <li><a href="#home" class="hover:text-orange-400 transition">Home</a></li>
+                        <li><a href="#recipes" class="hover:text-orange-400 transition">Recipes</a></li>
+                        <li><a href="#cooking" class="hover:text-orange-400 transition">Cook Now</a></li>
+                        <li><a href="#essentials" class="hover:text-orange-400 transition">Essentials</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Contact</h4>
+                    <p class="text-stone-200">Email: hello@culinarycanvas.com</p>
+                    <p class="text-stone-200">Follow us on social media for daily tips!</p>
+                </div>
+            </div>
+            <div class="border-t border-emerald-800 pt-8 text-center text-stone-300">
+                <p>&copy; 2024 Culinary Canvas. Crafted with passion for cooking enthusiasts.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
